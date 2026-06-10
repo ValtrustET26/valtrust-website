@@ -105,7 +105,7 @@ export default function SignUp(){
  
   // Guard después de los handlers
   if (isSignedIn) {
-    router.push("/");
+    router.push(role === "seller" ? "/seller/terms" : "/buyer/terms");
     return null;
   }
    if (!roleParam) {

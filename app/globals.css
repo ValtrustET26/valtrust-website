@@ -92,58 +92,12 @@
   --radius-3xl:calc(var(--radius) * 2.2);
   --radius-4xl:calc(var(--radius) * 2.6);
 
-    --animate-typing: typing1 2s steps(16) forwards,
-    hideCursor 0s forwards 2s,
-    blink 1s step-end infinite;
 
-  --animate-typing2: typing2 2s steps(10) forwards 2s,
-    hideCursor 0s forwards 4s,
-    blink 1s step-end infinite 2s;
-
-  --animate-typing3: typing3 2s steps(8) forwards 4s,
-    blink 1s step-end infinite 4s;
 
 
 }
 
- @keyframes typing1 {
-    from {
-      width: 0;
-    }
-    to {
-      width: 16ch;
-    }
-  }
 
-  @keyframes typing2 {
-    from {
-      width: 0;
-    }
-    to {
-      width: 10ch;
-    }
-  }
-
-  @keyframes typing3 {
-    from {
-      width: 0;
-    }
-    to {
-      width: 8ch;
-    }
-  }
-
-  @keyframes blink {
-    50% {
-      border-color: transparent;
-    }
-  }
-
-  @keyframes hideCursor {
-  to {
-    border-color: transparent;
-  }
-}
 
 .dark {
   --background:oklch(0.145 0 0);
