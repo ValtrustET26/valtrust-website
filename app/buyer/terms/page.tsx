@@ -49,7 +49,7 @@ export default function BuyerTerms() {
 
    
   return (
-    <main className="min-h-screen bg-[var(--wh-main)]" ref={heroRef}>
+    <main className="min-h-screen bg-[var(--wh-main)] mt-20" ref={heroRef}>
       {/* Hero */}
       <div className="relative w-full h-64 bg-[var(--bl-main)] overflow-hidden flex items-end">
         <div

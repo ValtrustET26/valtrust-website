@@ -80,7 +80,7 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="relative w-full h-[80vh] md:h-screen overflow-hidden">
         <Image
-          src="/landing-image.png"
+          src="/landing/landing-image.png"
           priority
           className="object-cover"
           alt="landing-image"
@@ -164,12 +164,12 @@ export default function Home() {
             <CommunityCard
               name="Santa Tecla"
               tag="Urban area"
-              imageSrc="/santa-tecla.png"
+              imageSrc="/landing/santa-tecla.png"
             />
             <CommunityCard
               name="Santa Ana"
               tag="Urban area"
-              imageSrc="/santa-ana.png"
+              imageSrc="/landing/santa-ana.png"
             />
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function Home() {
           <div className="flex-1 grid grid-cols-2 gap-4">
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-md group">
               <Image
-                src="/casa-1.png"
+                src="/landing/casa-1.png"
                 alt="Property 1"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -209,7 +209,7 @@ export default function Home() {
             </div>
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-md group mt-8">
               <Image
-                src="/casa-2.png"
+                src="/landing/casa-2.png"
                 alt="Property 2"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

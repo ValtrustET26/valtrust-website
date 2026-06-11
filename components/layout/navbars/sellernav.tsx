@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { Menu, X, House, Gem, Settings, Landmark, Activity } from "lucide-react";
 import { useState } from "react";
-import { UserProfile } from "@clerk/nextjs";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs";
@@ -84,13 +83,13 @@ export default function SellerNav() {
             <button className="w-2/8 p-3 rounded-lg rounded-full">
               <Settings />
             </button>
-            <button className=" w-1/3 gap-2 flex items-center justify-center rounded-lg rounded-full scale-150">
+            <div className=" w-1/3 gap-2 flex items-center justify-center rounded-lg rounded-full scale-150">
              <UserButton appearance={{
           elements: {
             avatarBox: "w-100 h-100",
           },
         }} />
-            </button>
+            </div>
           </div>
         </div>
       </div>

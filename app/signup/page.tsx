@@ -115,7 +115,7 @@ export default function SignUp(){
    
 
   return(
-    <div className="relative min-h-screen overflow-hidden bg-white">
+    <div className="relative min-h-screen overflow-hidden bg-white mt-20">
         <LandingNav onSignUpClick={() => setPopupOpen(true)} />
     <SellOrBuyPopup isOpen={popupOpen} onClose={() => setPopupOpen(false)} />
       <div className="absolute -bottom-28 -left-28 w-72 h-72 rounded-full bg-gradient-to-br from-[#2563eb] to-[#60a5fa] z-0" />

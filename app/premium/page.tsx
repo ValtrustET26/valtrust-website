@@ -18,7 +18,7 @@ export default function Premium() {
  
 <div className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
  
-<h1 className="max-w-5xl text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mt-20">
+<div className="max-w-5xl text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mt-20">
            <TypeAnimation
               sequence={[
                 " Unlock the full potential of your property",
@@ -30,7 +30,7 @@ export default function Premium() {
               repeat={0}
               className="text-white font-bold leading-tight text-5xl sm:text-6xl md:text-7xl"
             />
-</h1>
+</div>
  
 <p className="mt-8 max-w-2xl text-lg md:text-xl text-gray-300">
             Get deeper insights and smarter tools to make better

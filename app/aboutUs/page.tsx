@@ -188,16 +188,16 @@ export default function AboutPage() {
 
     <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 mt-12">
             {[
-                { name: "Aldo", image: "/aldo.jpeg" },
-                { name: "Leonardo", image: "/leonardo.jpeg" },
-                { name: "Josué", image: "/josue.jpeg" },
-                { name: "José", image: "/jose.jpeg" },
-                { name: "Rocío", image: "/rocio.jpeg" },
-                { name: "Alan", image: "/alan.jpeg" },
-                { name: "Gerar", image: "/gerar.jpeg" },
-                { name: "Elías", image: "/elias.jpeg" },
-                { name: "Willfredo", image: "/willfredo.jpeg" },
-                { name: "Tatiana", image: "/tatiana.jpeg" },
+                { name: "Aldo", image: "/AboutUs/aldo.jpeg" },
+                { name: "Leonardo", image: "/AboutUs/leonardo.jpeg" },
+                { name: "Josué", image: "/AboutUs/josue.jpeg" },
+                { name: "José", image: "/AboutUs/jose.jpeg" },
+                { name: "Rocío", image: "/AboutUs/rocio.jpeg" },
+                { name: "Alan", image: "/AboutUs/alan.jpeg" },
+                { name: "Gerar", image: "/AboutUs/gerar.jpeg" },
+                { name: "Elías", image: "/AboutUs/elias.jpeg" },
+                { name: "Willfredo", image: "/AboutUs/willfredo.jpeg" },
+                { name: "Tatiana", image: "/AboutUs/tatiana.jpeg" },
             ].map((member) => (
             <div
                 key={member.name}
@@ -233,12 +233,12 @@ export default function AboutPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             {[
-                { name: "Débora", image: "/debora.jpeg" },
-                { name: "Ashly", image: "/ashly.jpeg" },
-                { name: "Brayan", image: "/brayan.jpeg" },
-                { name: "Madeline", image: "/madeline.jpg" },
-                { name: "Briseyda", image: "/briseyda.jpeg" },
-                { name: "Keyli", image: "/keyli.jpeg" },
+                { name: "Débora", image: "/AboutUs/debora.jpeg" },
+                { name: "Ashly", image: "/AboutUs/ashly.jpeg" },
+                { name: "Brayan", image: "/AboutUs/brayan.jpeg" },
+                { name: "Madeline", image: "/AboutUs/madeline.jpg" },
+                { name: "Briseyda", image: "/AboutUs/briseyda.jpeg" },
+                { name: "Keyli", image: "/AboutUs/keyli.jpeg" },
             ].map((member) => (
             <div
                 key={member.name}

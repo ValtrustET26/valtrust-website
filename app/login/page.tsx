@@ -228,12 +228,13 @@ useEffect(() => {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Don&apos;t have an account?
-                <a
-                  href="/signup"
+                <button
+                  onClick={() => setPopupOpen(true)}
                   className="ml-1 font-semibold text-[#2f8fb6] hover:underline"
+                  
                 >
                   Register here
-                </a>
+                </button>
               </p>
             </div>
           </div>

@@ -2,7 +2,12 @@
 import Image from "next/image";
 import { Menu, X, House, Gem, Settings, Landmark, Activity } from "lucide-react";
 import { useState } from "react";
-import { UserProfile } from "@clerk/nextjs";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
+
+
 
 
 
@@ -40,16 +45,19 @@ export default function SellerNav() {
 
         <div className="flex flex w-full justify-end md:hidden items-center">
           <button className="flex justify-center items-center rounded-full w-1/9 h-14">
-        {/*Aca iria el componente de next de la cuenta
-        <UserProfile
-  appearance={{
-    elements: {
-      avatarBox: "w-full" // clases de Tailwind o CSS
-    }
-  }}
-/>
+            {<div className=" w-1/3 gap-2 flex items-center justify-center rounded-lg rounded-full scale-170">
+             <UserButton appearance={{
+          elements: {
+            avatarBox: "w-100 h-100",
+          },
+        }} />
+            </div>}
 
-        */}
+        
+
+          </button>
+          <button className="flex justify-center items-center rounded-full w-1/9 h-14">
+       
 
           </button>
           <button
@@ -72,14 +80,12 @@ export default function SellerNav() {
             <button className="w-2/8 p-3 rounded-lg rounded-full">
               <Settings />
             </button>
-            <button className="border-solid border-bl-main border-2 w-1/3">
-             <UserProfile
-  appearance={{
-    elements: {
-      avatarBox: "w-full" // clases de Tailwind o CSS
-    }
-  }}
-/>
+            <button className=" w-1/3 gap-2 flex items-center justify-center rounded-lg rounded-full scale-150">
+             <UserButton appearance={{
+          elements: {
+            avatarBox: "w-100 h-100",
+          },
+        }} />
             </button>
           </div>
         </div>
