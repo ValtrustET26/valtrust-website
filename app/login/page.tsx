@@ -48,7 +48,16 @@ export default function Login() {
       console.error(JSON.stringify(error, null, 2))
       return
     }
-    
+    if(signIn.status === "complete") {
+      await signIn.finalize();
+    }
+    useEffect(() => {
+  if (!isLoaded || !user) return;
+
+  const role = (user.unsafeMetadata as { role?: string }).role;
+
+  router.replace(role === "seller" ? "/seller" : "/buyer");
+}, [isLoaded, user]);
    
 
      if (signIn.status === "needs_client_trust") {

@@ -4,10 +4,16 @@ import { Menu, X, House, Gem, Settings, Landmark, Activity } from "lucide-react"
 import { useState } from "react";
 import { UserProfile } from "@clerk/nextjs";
 import Link from "next/link";
-
+import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 
 
 export default function SellerNav() {
+   const {user} = useUser();
+  const userRole = user?.unsafeMetadata?.role;
+  const [role, setRole] = useState()
+ 
   const [open, setOpen] = useState(false);
   return (
     <nav className=" fixed top-0 left-0 bg-wh-main text-sm text-black w-full min-height  z-50 fixed backdrop-blur-md">
@@ -23,16 +29,20 @@ export default function SellerNav() {
 
         <div className="md:block hidden w-2/3 md:text-md ">
           <ul className="flex justify-end items-center gap-2">
-            <li className="hover:bg-zinc-300 p-3 rounded-2xl w-2/9 flex justify-center">
+            <li className="hover:bg-zinc-300 p-3 rounded-4xl w-2/9 flex justify-center ">
             <Link href={"/seller"}>
               Home
               </Link>
             </li>
+
             <li className="hover:bg-zinc-300 p-3 rounded-2xl w-2/9 flex justify-center ">
               Marketplace
             </li>
             <li className="hover:bg-zinc-300 p-3 rounded-2xl w-2/9 flex justify-center ">
+            
+            <Link href={"/seller/Valuation"}>
               Valuation
+          </Link>
             </li>
             <li className="hover:bg-zinc-300 p-3 rounded-2xl w-2/9 flex justify-center ">
               Premium
@@ -42,16 +52,15 @@ export default function SellerNav() {
 
         <div className="flex flex w-full justify-end md:hidden items-center">
           <button className="flex justify-center items-center rounded-full w-1/9 h-14">
-        {/*Aca iria el componente de next de la cuenta
-        <UserProfile
-  appearance={{
-    elements: {
-      avatarBox: "w-full" // clases de Tailwind o CSS
-    }
-  }}
-/>
+            {<div className=" w-1/3 gap-2 flex items-center justify-center rounded-lg rounded-full scale-170">
+             <UserButton appearance={{
+          elements: {
+            avatarBox: "w-100 h-100",
+          },
+        }} />
+            </div>}
 
-        */}
+        
 
           </button>
           <button
@@ -65,6 +74,7 @@ export default function SellerNav() {
             )}
           </button>
         </div>
+        
 
         <div className="flex justify-end md:flex hidden items-center w-1/3 text-md">
           <button className="w-2/6 p-3 rounded-2xl hover:bg-zinc-300">
@@ -74,14 +84,12 @@ export default function SellerNav() {
             <button className="w-2/8 p-3 rounded-lg rounded-full">
               <Settings />
             </button>
-            <button className="border-solid border-bl-main border-2 w-1/3">
-             <UserProfile
-  appearance={{
-    elements: {
-      avatarBox: "w-full" // clases de Tailwind o CSS
-    }
-  }}
-/>
+            <button className=" w-1/3 gap-2 flex items-center justify-center rounded-lg rounded-full scale-150">
+             <UserButton appearance={{
+          elements: {
+            avatarBox: "w-100 h-100",
+          },
+        }} />
             </button>
           </div>
         </div>
