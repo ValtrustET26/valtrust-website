@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -49,8 +48,8 @@ model SellerProfile {
   firstName String
   lastName  String
 
-  email    String
-  phone    String
+  email String
+  phone String
 
   isIdentityVerified Boolean @default(false)
 
@@ -60,7 +59,7 @@ model SellerProfile {
   verification IdentityVerification?
 
   properties Property[]
-  valuations Valuation[]
+  valuations  Valuation[]
 }
 
 model IdentityVerification {
@@ -109,11 +108,11 @@ model Valuation {
 
   kitchenType String
 
-  hasLivingDiningRoom Boolean?
-  hasLaundryRoom      Boolean?
-  hasStorageCellar    Boolean?
-  hasStudioHomeOffice Boolean?
-  hasServiceQuarter   Boolean?
+  hasLivingDiningRoom     Boolean?
+  hasLaundryRoom          Boolean?
+  hasStorageCellar        Boolean?
+  hasStudioHomeOffice     Boolean?
+  hasServiceQuarter       Boolean?
 
   hasAC        Boolean?
   hasSmartHome Boolean?
@@ -130,23 +129,19 @@ model Valuation {
 
   publicDescription String?
 
-  maintenanceFee Float?
-
-  petsAllowed String?
-
+  maintenanceFee   Float?
+  petsAllowed      String?
   includedServices String?
 
   estimatedMin   Float
   estimatedMax   Float
   estimatedValue Float
-
-  pricePerM2 Float
+  pricePerM2     Float
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  seller SellerProfile? @relation(fields: [sellerClerkId], references: [clerkId], onDelete: Cascade)
-
+  seller   SellerProfile? @relation(fields: [sellerClerkId], references: [clerkId], onDelete: SetNull)
   property Property?
 
   @@index([sellerClerkId])
@@ -182,9 +177,8 @@ model Property {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  seller SellerProfile @relation(fields: [sellerClerkId], references: [clerkId], onDelete: Cascade)
-
-  valuation Valuation? @relation(fields: [valuationId], references: [id])
+  seller    SellerProfile @relation(fields: [sellerClerkId], references: [clerkId], onDelete: Cascade)
+  valuation Valuation?    @relation(fields: [valuationId], references: [id])
 
   photos    PropertyPhoto[]
   favorites Favorite[]
@@ -202,8 +196,7 @@ model PropertyPhoto {
 
   propertyId String
 
-  url String
-
+  url   String
   order Int
 
   createdAt DateTime @default(now())
@@ -235,8 +228,7 @@ model PropertyDeed {
 model Favorite {
   id String @id @default(uuid())
 
-  clerkId String
-
+  clerkId    String
   propertyId String
 
   savedAt DateTime @default(now())
@@ -253,8 +245,7 @@ model Favorite {
 model PropertyView {
   id String @id @default(uuid())
 
-  propertyId String
-
+  propertyId    String
   viewerClerkId String?
 
   viewedAt DateTime @default(now())
@@ -268,9 +259,7 @@ model SiteComment {
   id String @id @default(uuid())
 
   clerkId String
-
-  role Role
-
+  role    Role
   comment String
 
   createdAt DateTime @default(now())
@@ -282,8 +271,7 @@ model AIConversation {
   id String @id @default(uuid())
 
   clerkId String
-
-  title String?
+  title   String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -295,10 +283,8 @@ model AIMessage {
   id String @id @default(uuid())
 
   conversationId String
-
-  role String
-
-  content String
+  role           String
+  content        String
 
   createdAt DateTime @default(now())
 

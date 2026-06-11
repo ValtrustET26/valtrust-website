@@ -2,9 +2,6 @@
 
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { Record } from "@prisma/client/runtime/client";
-
-{/* Prices Per Meter Squared */ }
 
 const ZONE_PRICE: Record<string, number> = {
     "Colonia Escalón": 2000,
@@ -83,48 +80,49 @@ const TYPE_MULTIPLIER: Record<string, number> = {
     House: 1.00,
     apartment: 0.90,
     land: 0.50,
-}
+};
 
 const KITCHEN_MULTIPLIER: Record<string, number> = {
     closed: 1.00,
     open: 1.03,
     semi_open: 1.02,
-}
+};
 
 export type ValuationInput = {
+    sellerClerkId?: string;
     department: string;
     municipality: string;
     zone: string;
     exactAddress?: string;
-    postalCode: number;
+    postalCode?: number;
     type: string;
     condition: string;
     areaM2: number;
-    landAreaM2: number;
+    landAreaM2?: number;
     levels: number;
     yearBuilt: number;
     bedrooms: number;
     bathrooms: number;
-    parkingSpaces: number;
+    parkingSpaces?: number;
     kitchenType: string;
-    hasLivingDiningRoom: boolean;
-    hasLaundryRoom: boolean;
-    hasStorageCellar: boolean;
-    hasStudioHomeOffice: boolean;
-    hasServiceQuarter: boolean;
-    hasAC: boolean;
-    hasSmartHome: boolean;
-    hasPool: boolean;
-    hasSecurityGate: boolean;
-    hasCCTV: boolean;
-    hasGym: boolean;
-    hasElevator: boolean;
-    hasGreenAreas: boolean;
-    hasOtherAmenity: boolean;
+    hasLivingDiningRoom?: boolean;
+    hasLaundryRoom?: boolean;
+    hasStorageCellar?: boolean;
+    hasStudioHomeOffice?: boolean;
+    hasServiceQuarter?: boolean;
+    hasAC?: boolean;
+    hasSmartHome?: boolean;
+    hasPool?: boolean;
+    hasSecurityGate?: boolean;
+    hasCCTV?: boolean;
+    hasGym?: boolean;
+    hasElevator?: boolean;
+    hasGreenAreas?: boolean;
+    hasOtherAmenity?: boolean;
     otherAmenityDescription?: string;
     publicDescription?: string;
-    maintenanceFee: number;
-    petsAllowed: string;
+    maintenanceFee?: number;
+    petsAllowed?: string;
     includedServices?: string;
 };
 
@@ -151,7 +149,7 @@ export async function calculateValuation(input: ValuationInput): Promise<Valuati
 
     if (input.bedrooms > 3) price += (input.bedrooms - 3) * 8000;
     if (input.bathrooms > 2) price += (input.bathrooms - 2) * 5000;
-    if (input.parkingSpaces > 1) price += (input.parkingSpaces - 1) * 4000;
+    if (input.parkingSpaces && input.parkingSpaces > 1) price += (input.parkingSpaces - 1) * 4000;
 
     if (input.hasLivingDiningRoom) price *= 1.02;
     if (input.hasLaundryRoom) price *= 1.01;
@@ -178,40 +176,41 @@ export async function calculateValuation(input: ValuationInput): Promise<Valuati
 
     const valuation = await prisma.valuation.create({
         data: {
+            sellerClerkId: input.sellerClerkId ?? null,
             department: input.department,
             municipality: input.municipality,
             zone: input.zone,
-            exactAddress: input.exactAddress,
-            postalCode: input.postalCode,
+            exactAddress: input.exactAddress ?? null,
+            postalCode: input.postalCode ?? null,
             type: input.type,
             condition: input.condition,
             areaM2: input.areaM2,
-            landAreaM2: input.landAreaM2,
+            landAreaM2: input.landAreaM2 ?? null,
             levels: input.levels,
             yearBuilt: input.yearBuilt,
             bedrooms: input.bedrooms,
             bathrooms: input.bathrooms,
-            parkingSpaces: input.parkingSpaces,
+            parkingSpaces: input.parkingSpaces ?? null,
             kitchenType: input.kitchenType,
-            hasLivingDiningRoom: input.hasLivingDiningRoom,
-            hasLaundryRoom: input.hasLaundryRoom,
-            hasStorageCellar: input.hasStorageCellar,
-            hasStudioHomeOffice: input.hasStudioHomeOffice,
-            hasServiceQuarter: input.hasServiceQuarter,
-            hasAC: input.hasAC,
-            hasSmartHome: input.hasSmartHome,
-            hasPool: input.hasPool,
-            hasSecurityGate: input.hasSecurityGate,
-            hasCCTV: input.hasCCTV,
-            hasGym: input.hasGym,
-            hasElevator: input.hasElevator,
-            hasGreenAreas: input.hasGreenAreas,
-            hasOtherAmenity: input.hasOtherAmenity,
-            otherAmenityDescription: input.otherAmenityDescription,
-            publicDescription: input.publicDescription,
-            maintenanceFee: input.maintenanceFee,
-            petsAllowed: input.petsAllowed,
-            includedServices: input.includedServices,
+            hasLivingDiningRoom: input.hasLivingDiningRoom ?? null,
+            hasLaundryRoom: input.hasLaundryRoom ?? null,
+            hasStorageCellar: input.hasStorageCellar ?? null,
+            hasStudioHomeOffice: input.hasStudioHomeOffice ?? null,
+            hasServiceQuarter: input.hasServiceQuarter ?? null,
+            hasAC: input.hasAC ?? null,
+            hasSmartHome: input.hasSmartHome ?? null,
+            hasPool: input.hasPool ?? null,
+            hasSecurityGate: input.hasSecurityGate ?? null,
+            hasCCTV: input.hasCCTV ?? null,
+            hasGym: input.hasGym ?? null,
+            hasElevator: input.hasElevator ?? null,
+            hasGreenAreas: input.hasGreenAreas ?? null,
+            hasOtherAmenity: input.hasOtherAmenity ?? null,
+            otherAmenityDescription: input.otherAmenityDescription ?? null,
+            publicDescription: input.publicDescription ?? null,
+            maintenanceFee: input.maintenanceFee ?? null,
+            petsAllowed: input.petsAllowed ?? null,
+            includedServices: input.includedServices ?? null,
             estimatedValue,
             estimatedMin,
             estimatedMax,
