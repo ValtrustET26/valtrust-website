@@ -133,7 +133,7 @@ useEffect(() => {
         <section className="flex w-full items-center justify-center px-6 py-10 md:w-1/2 lg:px-24">
           <div className="w-full max-w-md">
             <Image
-              src={"/valtrust-isologo.png"}
+              src={"/LogosValtrust/valtrust-isologo.png"}
               alt={"Valtrust Isologo"}
               height={200}
               width={200}
@@ -245,7 +245,7 @@ useEffect(() => {
         <div className="absolute -bottom-28 -left-28 h-72 w-72 rounded-full bg-gradient-to-br from-blue-600 to-blue-400" />
         <div className="relative z-10 w-full max-w-md px-6">
           <Image
-            src={"/valtrust-isologo.png"}
+            src={"/LogosValtrust/valtrust-isologo.png"}
             alt={"Valtrust Isologo"}
             height={200}
             width={200}
@@ -294,7 +294,7 @@ useEffect(() => {
           <div className="absolute -bottom-20 -right-16 h-[320px] w-[320px] rounded-full bg-[#14337e]" />
           <div className="relative z-10 text-center text-white mb-10 ml-10">
             <Image
-              src={"/valtrust-isologo-white.png"}
+              src={"/LogosValtrust/valtrust-isologo-white.png"}
               alt={"Valtrust Isologo"}
               height={200}
               width={200}

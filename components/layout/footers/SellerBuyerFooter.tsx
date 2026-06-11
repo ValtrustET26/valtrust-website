@@ -17,7 +17,7 @@ export default function SellerBuyerFooter(){
 
           <div className="w-full flex justify-start relative">
             <Image
-              src={"/valtrust-isologo-white.png"}
+              src={"/LogosValtrust/valtrust-isologo-white.png"}
               alt={"Logo"}
               width={150}
               height={150}
