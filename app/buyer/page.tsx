@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { TypeAnimation } from "react-type-animation";
+import Image from "next/image";
 
 const properties = [
   { id: 1,  name: "Lourdes Colón", price: "$40,000", phone: "7058-9898", verified: true,  liked: true,  bg: "bg-amber-100" },
@@ -71,9 +72,9 @@ export default function LandingBuyer() {
     <div className="min-h-screen bg-gray-50 font-sans mt-20">
 
       <div
-        className="relative w-full h-[420px] overflow-hidden"
+        className="relative w-full h-[75vh] overflow-hidden"
         style={{
-          backgroundImage: "url('/landing-image.png')",
+          backgroundImage: "url('/landing/landing-image.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -82,7 +83,8 @@ export default function LandingBuyer() {
         <div className="absolute inset-0 bg-black/30" />
 
       
-        <div className="relative z-10 flex flex-col justify-center  px-8 max-w-xl">
+        <div className="relative z-10 flex flex-col justify-center py-55  px-8 md:py-20 max-w-xl">
+          
         
            <TypeAnimation
               sequence={[

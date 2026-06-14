@@ -17,7 +17,7 @@ export default function LandingNav({ onSignUpClick }: LandingNavProps) {
         <div className="mt-3 w-1/3s items-center justify-between">
         <Link href={"/"} className="mt-3 w-1/3  items-center justify-between">
           <Image
-            src={"/valtrust-isologo.png"}
+            src={"/LogosValtrust/valtrust-isologo.png"}
             alt="Logo Image"
             width={125}
             height={125}

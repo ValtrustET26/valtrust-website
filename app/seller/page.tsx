@@ -5,14 +5,24 @@ import ReviewCard from "@/components/layout/seller/reviewcard"
 import ReviewForm from "@/components/layout/seller/leavereview"
 import ListingCarousel from "@/components/layout/seller/listingcardcarousel"
 import { TypeAnimation } from "react-type-animation";
+import Image from "next/image"
 
 
 
 export default function HomeSeller(){
     return(
     <div className="min-h-screen bg-[#fafaf9]">
-         <section className="relative w-full h-[70vh]  md:h-screen overflow-hidden z-1">
 
+    
+         <section className="relative w-full h-[70vh]  md:h-screen overflow-hidden z-1">
+          <Image
+                    src="/landing/landing-image.png"
+                    priority
+                    className="object-cover"
+                    alt="landing-image"
+                    fill
+                  />
+  {/*
           <video
     autoPlay
     loop
@@ -23,6 +33,7 @@ export default function HomeSeller(){
   >
     <source src="/videos/seller-hero.mp4" type="video/mp4" />
   </video>
+  */}
 
         <div className="absolute inset-0 flex items-center pt-20 md:pt-0r overflow-hidden">
           <div className="px-6 md:px-16 max-w-3xl">

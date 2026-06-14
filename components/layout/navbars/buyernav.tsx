@@ -19,7 +19,7 @@ export default function SellerNav() {
       <div className="flex items-center h-20">
         <div className="mt-3 w-1/3s items-center justify-between">
           <Image
-            src={"/valtrust-isologo.png"}
+            src={"/LogosValtrust/valtrust-isologo.png"}
             alt="Logo Image"
             width={125}
             height={125}

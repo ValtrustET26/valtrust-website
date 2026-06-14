@@ -94,7 +94,7 @@ export default function ReviewForm() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Marisol Elena Martínez Guevara"
-              className="w-full rounded-md border border-gray-300 px-4 py-4 text-sm outline-none transition focus:border-[#1E5EDB]"
+              className=" text-black w-full rounded-md border border-gray-300 px-4 py-4 text-sm outline-none transition focus:border-[#1E5EDB]"
             />
           </div>
           <div className="mb-10">
@@ -107,7 +107,7 @@ export default function ReviewForm() {
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
               placeholder="Share your experience with our services..."
-              className="w-full resize-none rounded-md border border-gray-300 px-4 py-4 text-sm outline-none transition focus:border-[#1E5EDB]"
+              className="w-full resize-none rounded-md border border-gray-300 px-4 py-4 text-sm outline-none transition focus:border-[#1E5EDB] text-black"
             />
           </div>
 
