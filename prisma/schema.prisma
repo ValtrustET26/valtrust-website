@@ -170,11 +170,13 @@ model PropertyView {
 }
 
 model SiteComment {
-  id        String   @id @default(uuid())
   clerkId   String
   role      Role
   comment   String
   createdAt DateTime @default(now())
+  firstName String?
+  lastName  String?
+  id        BigInt   @id @default(autoincrement())
 
   @@index([clerkId])
 }
