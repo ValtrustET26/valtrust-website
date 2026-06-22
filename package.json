@@ -8,7 +8,8 @@
     "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@clerk/nextjs": "7.3.3",
@@ -56,5 +57,7 @@
   "volta": {
     "node": "24.16.0",
     "npm": "11.16.0"
-  }
+  },"engines": {
+  "node": "20.x"
+}
 }
