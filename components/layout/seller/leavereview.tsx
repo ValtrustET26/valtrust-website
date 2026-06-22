@@ -1,34 +1,59 @@
 "use client";
 import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
+
+
 interface Review {
   id: number;
-  name: string;
   review: string;
   rating: number;
 }
 export default function ReviewForm() {
+  const { user } = useUser();
   const [showForm, setShowForm] = useState(false);
-  const [name, setName] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(0);
   const [reviews, setReviews] = useState<Review[]>([]);
-  const handleSubmitReview = () => {
-    if (!name || !reviewText || rating === 0) return;
-    const newReview: Review = {
-      id: Date.now(),
-      name,
-      review: reviewText,
-      rating,
-    };
+  const [loading, setLoading] = useState(false);
 
-    setReviews((prev) => [newReview, ...prev]);
-    setName("");
+
+  const handleSubmitReview = async () => {
+  if (!reviewText || rating === 0) return;
+
+  try {
+    const response = await fetch("/api/create-comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        comment: reviewText,
+        rating,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to create review");
+    }
+
+    console.log("Comentario creado:", data);
+
     setReviewText("");
     setRating(0);
     setShowForm(false);
-  };
+
+  } catch (error) {
+    console.error(error);
+  }finally{
+    setLoading(false);
+  }
+};
+
+
+
   const handleCancelReview = () => {
-    setName("");
     setReviewText("");
     setRating(0);
 
@@ -85,17 +110,6 @@ export default function ReviewForm() {
             </div>
           </div>
           <div className="mb-8">
-            <label className="mb-3 block text-sm font-medium text-[#171717]">
-              Full Name
-            </label>
-
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Marisol Elena Martínez Guevara"
-              className=" text-black w-full rounded-md border border-gray-300 px-4 py-4 text-sm outline-none transition focus:border-[#1E5EDB]"
-            />
           </div>
           <div className="mb-10">
             <label className="mb-3 block text-sm font-medium text-[#171717]">
@@ -115,10 +129,11 @@ export default function ReviewForm() {
             
 
             <button
+              disabled={loading}
               onClick={handleSubmitReview}
               className="rounded-md bg-[#0B1E4A] px-16 py-4 text-sm font-semibold text-white transition hover:opacity-90"
             >
-              Submit Review
+              {loading ? "Submitting..." : "Submit Review"}
             </button>
 
           
@@ -143,10 +158,6 @@ export default function ReviewForm() {
                 <div className="flex items-center gap-3">
                   
                   <div className="h-10 w-10 rounded-full bg-gray-300" />
-
-                  <h3 className="text-sm font-semibold text-[#171717]">
-                    {review.name}
-                  </h3>
                 </div>
                 <button
                   onClick={() => handleDeleteReview(review.id)}
