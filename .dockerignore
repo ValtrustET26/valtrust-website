@@ -1,0 +1,11 @@
+node_modules
+.next
+.env
+.env.local
+.git
+app
+components
+lib
+prisma
+public
+*.md
