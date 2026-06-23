@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import LandingNav from "@/components/layout/navbars/landingnav";
 import SellOrBuyPopup from "@/components/layout/selection-popup/Choose";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
   const { signIn, errors, fetchStatus, } = useSignIn();
@@ -17,7 +18,8 @@ export default function Login() {
   const [showClientTrust, setShowClientTrust] = useState(false);
   const [trustCode, setTrustCode] = useState("");
   const role = (user?.unsafeMetadata as { role?: string })?.role;
-   const [popupOpen, setPopupOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
    const isLoading = fetchStatus === "fetching";
 
@@ -166,17 +168,21 @@ useEffect(() => {
                 />
               </div>
 
-              <div>
-                <label className="mb-2 block text-sm text-gray-600">
-                  Password
-                </label>
+              <div className="relative">
                 <input
-                  type="password"
-                  placeholder="Enter your password"
                   value={password}
+                   type={showPassword ? "text" : "password"}
+                  placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-11 w-full rounded-md border border-gray-300 px-4 text-black outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full h-11 px-4 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-[#4ea2ff] text-black"
                 />
+                  <button
+                   type="button"
+                   onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  >
+    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+  </button>
               </div>
 
               <div className="flex flex-col gap-2 text-sm sm:flex-row sm:items-center sm:justify-between">
