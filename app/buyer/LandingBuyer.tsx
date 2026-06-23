@@ -15,28 +15,47 @@ export default function LandingBuyer({ listings }: { listings: React.ReactNode }
   const [showForm, setShowForm]       = useState(false);
   const [rating, setRating]           = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [reviewName, setReviewName]   = useState("");
+
   const [reviewText, setReviewText]   = useState("");
   const [submitted, setSubmitted]     = useState(false);
   const [reviews, setReviews] = useState([
-    { id: 1, name: "Maria Martinez",    text: "Finding a home felt overwhelming at first, but this platform made the entire experience much easier...", rating: 5 },
-    { id: 2, name: "Marizta Rodriguez", text: "Easy to use, professional, and full of great properties. I found my dream home in just a few days.", rating: 5 },
-    { id: 3, name: "Roxana Sermeño",    text: "Excellent experience. The platform help me to discover the perfect house for my family.", rating: 5 },
+    { id: 1, text: "Finding a home felt overwhelming at first, but this platform made the entire experience much easier...", rating: 5 },
+    { id: 2, text: "Easy to use, professional, and full of great properties. I found my dream home in just a few days.", rating: 5 },
+    { id: 3, text: "Excellent experience. The platform help me to discover the perfect house for my family.", rating: 5 },
   ]);
 
-  const handleSubmitReview = () => {
-    if (!reviewName.trim() || !reviewText.trim() || rating === 0) return;
-    setReviews((prev) => [
-      ...prev,
-      { id: Date.now(), name: reviewName, text: reviewText, rating },
-    ]);
-    setReviewName("");
+  const handleSubmitReview = async () => {
+  if (!reviewText.trim() || rating === 0) return;
+
+  try {
+    const response = await fetch("/api/create-comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        comment: reviewText,
+        rating,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+
     setReviewText("");
     setRating(0);
     setShowForm(false);
+
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
-  };
+
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans mt-20">
@@ -145,7 +164,7 @@ export default function LandingBuyer({ listings }: { listings: React.ReactNode }
                       <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
                     </svg>
                   </div>
-                  <span className="text-sm font-semibold text-gray-800">{reviews[0].name}</span>
+                  <span className="text-sm font-semibold text-gray-800">{}</span>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">{reviews[0].text}</p>
               </div>
@@ -169,7 +188,7 @@ export default function LandingBuyer({ listings }: { listings: React.ReactNode }
                       <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
                     </svg>
                   </div>
-                  <span className="text-sm font-semibold text-gray-800">{review.name}</span>
+                  <span className="text-sm font-semibold text-gray-800">{}</span>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">{review.text}</p>
                 <div className="flex gap-1 mt-3">
@@ -230,16 +249,6 @@ export default function LandingBuyer({ listings }: { listings: React.ReactNode }
                 </button>
               ))}
             </div>
-
-
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
-            <input
-              type="text"
-              placeholder="e.g. Marisol Elena Martinez Guevara"
-              value={reviewName}
-              onChange={(e) => setReviewName(e.target.value)}
-              className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-400 mb-4"
-            />
 
 
             <label className="block text-sm font-semibold text-gray-700 mb-1">Your Review</label>
