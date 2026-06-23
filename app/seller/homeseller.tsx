@@ -5,8 +5,37 @@ import ReviewCard from "@/components/layout/seller/reviewcard"
 import ReviewForm from "@/components/layout/seller/leavereview"
 import { TypeAnimation } from "react-type-animation";
 import Image from "next/image"
+import { useState, useEffect } from "react";
+type Review = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  comment: string;
+  rating: number;
+};
+
 
 export default function HomeSeller({ listings }: { listings: React.ReactNode }) {
+
+    const [reviews, setReviews] = useState<Review[]>([]);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  const load = async () => {
+    try {
+      const res = await fetch("/api/get-comments");
+      const data = await res.json();
+
+      setReviews(data.comments || []);
+    } catch (err) {
+      console.error("Error loading comments:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  load();
+}, []);
     return (
         <div className="min-h-screen bg-[#fafaf9]">
 
@@ -78,23 +107,31 @@ export default function HomeSeller({ listings }: { listings: React.ReactNode }) 
                 </p>
                 <div className="grid items-start gap-5 lg:grid-cols-2">
                     {/*Review section*/}
-                    <ReviewCard
-                        name="Roberto Méndez"
-                        rating={5}
-                        review="I had an excellent experience using this website to evaluate and list my house for sale. The platform made the entire process incredibly simple and professional from start to finish. I was especially impressed by how detailed the property valuation was. It didn't just give me a random estimate  it analyzed the neighborhood, nearby sales, market trends, property size, amenities, and many other factors to provide a realistic and accurate price range for my home."
-                    />
-                    <div className=" grid items-start flex flex-col gap-6">
-                        <ReviewCard
-                            name="Alberto Ramírez"
-                            rating={5}
-                            review="Great platform for homeowners! The valuation was detailed and accurate, and listing my property was fast and easy."
-                        />
-                        <ReviewCard
-                            name="Nohemy Hernández"
-                            rating={5}
-                            review="Very useful website for selling a house. I loved how it analyzed the area and market prices to give a realistic property value."
-                        />
-                    </div>
+                   {loading ? (
+  <p>Loading reviews...</p>
+) : (
+  <div className="grid items-start gap-5 lg:grid-cols-2">
+    {reviews[0] && (
+      <ReviewCard
+        name={`${reviews[0].firstName} ${reviews[0].lastName}`}
+        review={reviews[0].comment}
+        rating={reviews[0].rating}
+      />
+    )}
+
+    <div className="flex flex-col gap-6">
+      {reviews.slice(1).map((review) => (
+        <ReviewCard
+          key={review.id}
+          name={`${review.firstName} ${review.lastName}`}
+          review={review.comment}
+          rating={review.rating}
+        />
+      ))}
+    </div>
+  </div>
+)}
+                    
                 </div>
             </section>
             <ReviewForm />
