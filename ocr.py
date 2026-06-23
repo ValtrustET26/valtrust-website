@@ -60,7 +60,7 @@ def process_file(file):
     if filename.endswith(".pdf"):
 
         pdf_bytes = file.read()
-        pages = convert_from_bytes(pdf_bytes)
+        pages = convert_from_bytes(pdf_bytes, dpi=150)
 
         for index, page in enumerate(pages):
 
@@ -76,14 +76,6 @@ def process_file(file):
                 )
 
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-            gray = cv2.resize(
-                gray,
-                None,
-                fx=2,
-                fy=2,
-                interpolation=cv2.INTER_CUBIC
-            )
 
             gray = cv2.equalizeHist(gray)
 
@@ -137,14 +129,6 @@ def process_file(file):
             raise Exception(f"{file.filename} is blurry")
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-        gray = cv2.resize(
-            gray,
-            None,
-            fx=2,
-            fy=2,
-            interpolation=cv2.INTER_CUBIC
-        )
 
         gray = cv2.equalizeHist(gray)
 
